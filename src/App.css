@@ -14,13 +14,17 @@
 }
 
 .top-nav {
+  position: sticky;
+  top: 0.7rem;
+  z-index: 30;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   padding: 0.65rem;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(9px);
+  background: rgba(255, 255, 255, 0.8);
   box-shadow: 0 8px 20px rgba(84, 58, 133, 0.12);
 }
 
@@ -45,6 +49,38 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.65rem;
+}
+
+.creation-mark {
+  margin: 0.3rem 0 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: #7c4798;
+}
+
+.sparkle-star {
+  display: inline-block;
+  margin-left: 0.2rem;
+  color: #ff946e;
+  text-shadow: 0 0 12px rgba(255, 148, 110, 0.65);
+  animation: sparkle 1.3s ease-in-out infinite;
+}
+
+.story-line {
+  margin-bottom: 0.6rem;
+}
+
+.reminder-list {
+  margin-bottom: 1rem;
+  padding: 0.8rem;
+  border: 1px dashed var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.reminder-list p {
+  margin: 0.25rem 0;
+  font-weight: 700;
 }
 
 .launch {
@@ -231,6 +267,7 @@ input[type='range']:focus-visible {
 }
 
 select,
+input,
 textarea {
   margin-top: 0.25rem;
   border: 1px solid var(--line);
@@ -248,6 +285,7 @@ input[type='range'] {
 }
 
 select,
+input,
 textarea {
   padding: 0.7rem 0.8rem;
   background: #fffdff;
@@ -258,6 +296,7 @@ textarea {
 }
 
 select:focus,
+input:focus,
 textarea:focus {
   outline: 3px solid rgba(127, 83, 224, 0.23);
   border-color: var(--accent-strong);
@@ -339,6 +378,69 @@ textarea:focus {
   gap: 0.9rem;
 }
 
+.community {
+  grid-column: 1 / -1;
+}
+
+.community-form {
+  display: grid;
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+}
+
+.poem-card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 0.9rem;
+  background: rgba(255, 255, 255, 0.78);
+  margin-bottom: 1rem;
+}
+
+.poem-card h3 {
+  margin-top: 0;
+}
+
+.poem-signature {
+  margin-bottom: 0;
+  font-weight: 800;
+  color: var(--accent-strong);
+}
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.post-card {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 0.8rem;
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.post-card p {
+  margin: 0 0 0.55rem;
+}
+
+.post-card a {
+  color: var(--accent-strong);
+  font-weight: 700;
+}
+
+.post-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.7rem;
+  font-size: 0.9rem;
+}
+
+.post-meta span {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
 .inspo-card {
   border: 1px solid var(--line);
   border-radius: 18px;
@@ -406,6 +508,21 @@ small {
   }
 }
 
+@keyframes sparkle {
+  0% {
+    transform: scale(0.95) rotate(0deg);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1.2) rotate(10deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.95) rotate(0deg);
+    opacity: 0.75;
+  }
+}
+
 @media (max-width: 860px) {
   .page {
     grid-template-columns: 1fr;
@@ -413,6 +530,7 @@ small {
 
   .top-nav {
     border-radius: 16px;
+    top: 0.4rem;
   }
 
   .page::before,
@@ -430,6 +548,10 @@ small {
   }
 
   .inspiration .inspo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .posts-grid {
     grid-template-columns: 1fr;
   }
 }

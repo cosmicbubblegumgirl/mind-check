@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { type FormEvent, useEffect, useMemo, useState } from 'react'
 import './App.css'
 
 const prompts = [
@@ -11,73 +11,96 @@ const prompts = [
 
 const inspirations = [
   {
-    name: 'Temple Grandin',
-    area: 'Science & Engineering',
-    accomplishment:
-      'Redesigned humane livestock systems used across the cattle industry and became a leading autism advocate in science.',
-    connection:
-      'Temple Grandin has openly discussed lifelong anxiety and how neurodivergent thinking shaped her work.',
-    quote: 'The world needs all kinds of minds.',
-    image:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Temple_Grandin_2011_Shankbone.JPG/512px-Temple_Grandin_2011_Shankbone.JPG',
-  },
-  {
-    name: 'Richard Branson',
-    area: 'Technology & Entrepreneurship',
-    accomplishment:
-      'Built the Virgin group, scaling businesses across airlines, telecom, and space technology ventures.',
-    connection:
-      'Richard Branson has publicly spoken about living with ADHD and using high-energy thinking to innovate.',
-    quote: "Business opportunities are like buses, there's always another one coming.",
-    image:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Richard_Branson_cropped.jpg/512px-Richard_Branson_cropped.jpg',
-  },
-  {
     name: 'Nikola Tesla',
-    area: 'Physics & Invention',
+    area: 'Physics & Electrical Engineering',
     accomplishment:
-      'Pioneered alternating current power systems and key inventions that shaped modern electrical engineering.',
+      'Pioneered alternating current power systems and inventions that shaped modern electrical infrastructure.',
     connection:
-      'Biographical accounts describe intense anxiety, sensory sensitivity, and obsessive routines in his daily life.',
+      'Biographical accounts describe severe anxiety, sensory sensitivity, and obsessive routines throughout his life.',
     quote: 'The present is theirs; the future, for which I really worked, is mine.',
-    image:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/N.Tesla.JPG/512px-N.Tesla.JPG',
-  },
-  {
-    name: 'Leonardo da Vinci',
-    area: 'Math, Engineering & Invention',
-    accomplishment:
-      'Produced foundational work in anatomy, engineering sketches, and mathematical perspective centuries ahead of his time.',
-    connection:
-      'Some modern researchers argue his lifelong distractibility and unfinished projects align with ADHD-like patterns.',
-    quote: 'Learning never exhausts the mind.',
-    image:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Leonardo_da_Vinci_-_presumed_self-portrait_-_WGA12798.jpg/512px-Leonardo_da_Vinci_-_presumed_self-portrait_-_WGA12798.jpg',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/d/d4/N.Tesla.JPG',
   },
   {
     name: 'Charles Darwin',
     area: 'Biology',
     accomplishment:
-      'Developed the theory of evolution by natural selection, reshaping modern biology forever.',
+      'Developed the theory of evolution by natural selection, permanently reshaping biological science.',
     connection:
-      'Historians and physicians have documented severe anxiety symptoms and panic-like episodes throughout his life.',
-    quote:
-      'A man who dares to waste one hour of time has not discovered the value of life.',
+      'Historians and physicians have documented panic-like episodes and long-term anxiety symptoms in his journals and letters.',
+    quote: 'A man who dares to waste one hour of time has not discovered the value of life.',
     image:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Charles_Darwin_by_Julia_Margaret_Cameron_2.jpg/512px-Charles_Darwin_by_Julia_Margaret_Cameron_2.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/8/8a/Charles_Darwin_by_Julia_Margaret_Cameron_2.jpg',
   },
   {
-    name: 'Dr. Edward Hallowell',
-    area: 'Psychiatry & ADHD Research',
+    name: 'Alan Turing',
+    area: 'Mathematics & Computer Science',
     accomplishment:
-      'Helped popularize modern ADHD understanding through clinical work and bestselling mental health books.',
+      'Founded theoretical computer science and helped crack Enigma code, changing WWII and modern computing.',
     connection:
-      'As a psychiatrist, he has publicly shared his own ADHD diagnosis and how it affects focus, creativity, and anxiety.',
-    quote: 'Never worry alone.',
+      'Biographical records describe intense social anxiety and emotional strain alongside extraordinary analytical focus.',
+    quote: 'Sometimes it is the people no one can imagine anything of who do the things no one can imagine.',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg',
+  },
+  {
+    name: 'Marie Curie',
+    area: 'Physics & Chemistry',
+    accomplishment:
+      'Became the first person to win two Nobel Prizes in two different sciences and advanced research in radioactivity.',
+    connection:
+      'Historical sources note profound stress, exhaustion, and anxiety during years of high-stakes research and public scrutiny.',
+    quote: 'Nothing in life is to be feared, it is only to be understood.',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/6/69/Marie_Curie_c1920.jpg',
+  },
+  {
+    name: 'Leonardo da Vinci',
+    area: 'Math, Engineering & Invention',
+    accomplishment:
+      'Produced foundational work in anatomy, engineering design, and mathematical perspective centuries ahead of his era.',
+    connection:
+      'Some modern researchers suggest his distractibility and unfinished projects align with ADHD-like cognitive patterns.',
+    quote: 'Learning never exhausts the mind.',
     image:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Edward_Hallowell_2015.jpg/512px-Edward_Hallowell_2015.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/e/ec/Leonardo_da_Vinci_-_presumed_self-portrait_-_WGA12798.jpg',
+  },
+  {
+    name: 'Albert Einstein',
+    area: 'Theoretical Physics',
+    accomplishment:
+      'Developed the theory of relativity and transformed how we understand space, time, and energy.',
+    connection:
+      'Many biographers note his lifelong anxiety, overwhelm, and intense rumination alongside periods of deep creativity.',
+    quote: 'Imagination is more important than knowledge.',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/Albert_Einstein_Head.jpg',
   },
 ]
+
+const aboutStory = [
+  'I built this page as a home base for brains that do not move in straight lines.',
+  'If you live with ADHD, anxiety, or that chaotic duet together, this is your reminder: your mind is not broken, dramatic, lazy, or too much.',
+  'Your mind is adaptive, creative, sensitive, fast, and often carrying more than people can see.',
+  'I know what it feels like to care deeply, think quickly, and still freeze when there are too many tabs open in your head. I know the guilt of starting ten things, the grief of finishing none, and the quiet fear that maybe everyone else got an instruction manual we never received.',
+  'So I made one for us.',
+  'This space is part check-in, part encouragement board, part proof that people with minds like ours have always changed the world. Not in spite of how we think, but often because of it.',
+  'On days when your focus flickers, your chest feels heavy, or your confidence drops below 10 percent, come back here.',
+  'Let this page say what your nervous system forgets:',
+]
+
+const reminders = [
+  'You are still intelligent when you are overwhelmed.',
+  'You are still capable when your energy is inconsistent.',
+  'You are still worthy when your process looks different from everyone else.',
+  'You are still becoming who you are meant to be.',
+]
+
+type CommunityPost = {
+  id: number
+  name: string
+  text: string
+  artLink: string
+  createdAt: string
+}
+
+const boardStorageKey = 'mind-check-community-board-v1'
 
 function App() {
   const [mood, setMood] = useState('Steady')
@@ -85,6 +108,10 @@ function App() {
   const [note, setNote] = useState('')
   const [checked, setChecked] = useState<string[]>(['Focus level'])
   const [savedAt, setSavedAt] = useState('')
+  const [postName, setPostName] = useState('')
+  const [postText, setPostText] = useState('')
+  const [postArtLink, setPostArtLink] = useState('')
+  const [posts, setPosts] = useState<CommunityPost[]>([])
 
   const quizUrl = `${import.meta.env.BASE_URL}quiz-app/`
   const noteRemaining = 180 - note.length
@@ -95,6 +122,25 @@ function App() {
     if (energy >= 5) return 'Amber'
     return 'Red'
   }, [energy])
+
+  useEffect(() => {
+    const stored = localStorage.getItem(boardStorageKey)
+    if (!stored) return
+
+    try {
+      const parsed = JSON.parse(stored) as CommunityPost[]
+      if (Array.isArray(parsed)) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setPosts(parsed)
+      }
+    } catch {
+      localStorage.removeItem(boardStorageKey)
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem(boardStorageKey, JSON.stringify(posts))
+  }, [posts])
 
   const togglePrompt = (value: string) => {
     setChecked((current) =>
@@ -109,27 +155,51 @@ function App() {
     setSavedAt(now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }))
   }
 
+  const submitPost = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const cleanedText = postText.trim()
+    if (!cleanedText) return
+
+    const nextPost: CommunityPost = {
+      id: Date.now(),
+      name: postName.trim() || 'Anonymous Stargazer',
+      text: cleanedText,
+      artLink: postArtLink.trim(),
+      createdAt: new Date().toLocaleString(),
+    }
+
+    setPosts((current) => [nextPost, ...current])
+    setPostText('')
+    setPostArtLink('')
+  }
+
   return (
     <main className="page">
       <nav className="top-nav">
         <a href="#about">About Me</a>
         <a href="#checkin">Daily Spark Check</a>
         <a href="#inspiration">Proof We Can Shine</a>
+        <a href="#community">Made by Minds Like Ours</a>
         <a href={quizUrl}>Test App</a>
       </nav>
 
       <section id="about" className="panel hero-panel">
         <p className="eyebrow">Built by one beautifully busy brain, for another</p>
         <h1>Mind Check</h1>
-        <p className="lead">
-          Hi, I made this space as an about-me love note for brains like ours: creative, nonlinear,
-          anxious sometimes, brilliant always. If you have ADHD, anxiety, or both, you are not
-          broken. You are a whole galaxy trying to fit inside a calendar.
+        <p className="creation-mark">
+          QuantumCupcake Creation <span className="sparkle-star" aria-hidden="true">*</span>
         </p>
-        <p className="lead">
-          This home page is our reminder that people like us are wildly capable of great things.
-          We can build, discover, invent, and still need rest breaks and soft landings.
-        </p>
+
+        {aboutStory.map((line) => (
+          <p key={line} className="lead story-line">
+            {line}
+          </p>
+        ))}
+        <div className="reminder-list" aria-label="Mind reminders">
+          {reminders.map((line) => (
+            <p key={line}>{line}</p>
+          ))}
+        </div>
 
         <div className="hero-actions">
           <a className="save launch" href="#checkin">
@@ -269,6 +339,94 @@ function App() {
               </div>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section id="community" className="panel community">
+        <p className="eyebrow">A little board for our big brains</p>
+        <h2>Made by Minds Like Ours</h2>
+        <p className="lead">
+          Post your weird thought, tiny win, art link, or soft reminder for someone else scrolling
+          at 2am.
+        </p>
+
+        <form className="community-form" onSubmit={submitPost}>
+          <label className="field" htmlFor="postName">
+            <span>Name (optional)</span>
+            <input
+              id="postName"
+              type="text"
+              value={postName}
+              maxLength={42}
+              placeholder="Anonymous Stargazer"
+              onChange={(event) => setPostName(event.target.value)}
+            />
+          </label>
+
+          <label className="field" htmlFor="postText">
+            <span>Share a thought</span>
+            <textarea
+              id="postText"
+              rows={3}
+              value={postText}
+              maxLength={260}
+              placeholder="Today I made tea before doom-scrolling and I am counting that as growth."
+              onChange={(event) => setPostText(event.target.value)}
+              required
+            />
+          </label>
+
+          <label className="field" htmlFor="postArtLink">
+            <span>Art or project link (optional)</span>
+            <input
+              id="postArtLink"
+              type="url"
+              value={postArtLink}
+              placeholder="https://"
+              onChange={(event) => setPostArtLink(event.target.value)}
+            />
+          </label>
+
+          <button type="submit" className="save">
+            Post to Community Board
+          </button>
+        </form>
+
+        <article className="poem-card">
+          <h3>For the Ones Written in Stardust and Static</h3>
+          <p>
+            You are not behind. You are not too much. You are not failing because your path has
+            switchbacks.
+          </p>
+          <p>
+            You are a constellation in motion, learning your own gravity while the world asks for
+            straight lines.
+          </p>
+          <p>
+            Keep going. Build gently. Rest without guilt. Return when you are ready. Your light was
+            never meant to be ordinary.
+          </p>
+          <p className="poem-signature">-QuantumCupcake</p>
+        </article>
+
+        <div className="posts-grid" aria-live="polite">
+          {posts.length === 0 ? (
+            <p className="muted">No posts yet. Be the first kind spark on the board.</p>
+          ) : (
+            posts.map((post) => (
+              <article key={post.id} className="post-card">
+                <p className="post-meta">
+                  <strong>{post.name}</strong> <span>{post.createdAt}</span>
+                </p>
+                <p>{post.text}</p>
+                {post.artLink ? (
+                  <a href={post.artLink} target="_blank" rel="noreferrer">
+                    View linked art/project
+                  </a>
+                ) : null}
+              </article>
+            ))
+          )}
         </div>
       </section>
     </main>
