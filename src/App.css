@@ -400,10 +400,11 @@ textarea:focus {
   margin-top: 0;
 }
 
-.poem-signature {
-  margin-bottom: 0;
-  font-weight: 800;
-  color: var(--accent-strong);
+.poem-body {
+  margin: 0;
+  white-space: pre-wrap;
+  font: inherit;
+  line-height: 1.6;
 }
 
 .posts-grid {

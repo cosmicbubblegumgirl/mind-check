@@ -50,6 +50,7 @@ const inspirations = [
       'Historical sources note profound stress, exhaustion, and anxiety during years of high-stakes research and public scrutiny.',
     quote: 'Nothing in life is to be feared, it is only to be understood.',
     image: 'inspiration/Marie-Curie-Paris-laboratory.png',
+    imagePosition: 'center top',
   },
   {
     name: 'Leonardo da Vinci',
@@ -326,7 +327,12 @@ function App() {
         <div className="inspo-grid">
           {inspirations.map((person) => (
             <article key={person.name} className="inspo-card">
-              <img src={person.image} alt={person.name} loading="lazy" />
+              <img
+                src={person.image}
+                alt={person.name}
+                loading="lazy"
+                style={{ objectPosition: person.imagePosition ?? 'center' }}
+              />
               <div>
                 <h3>{person.name}</h3>
                 <p className="tagline">{person.area}</p>
@@ -393,19 +399,213 @@ function App() {
 
         <article className="poem-card">
           <h3>For the Ones Written in Stardust and Static</h3>
-          <p>
-            You are not behind. You are not too much. You are not failing because your path has
-            switchbacks.
-          </p>
-          <p>
-            You are a constellation in motion, learning your own gravity while the world asks for
-            straight lines.
-          </p>
-          <p>
-            Keep going. Build gently. Rest without guilt. Return when you are ready. Your light was
-            never meant to be ordinary.
-          </p>
-          <p className="poem-signature">-QuantumCupcake</p>
+          <pre className="poem-body">{`By QuantumCupcake
+
+We are stardust threaded through syntax,
+constellations hidden under skin,
+whole universes of thought and feeling
+turning quietly within.
+✦ ✦ ✦ ✦
+We are built from sparks and spirals,
+from unfinished proofs and unnamed light,
+from minds that wander far beyond the edges
+of what the world calls neat and right.
+✦ ✦ ✦ ✦
+We have always moved in patterns
+others could not quite translate,
+speaking in storms, in silence, in fragments,
+arriving early, arriving late.
+✦ ✦ ✦ ✦
+We have known the ache of being misread,
+of being answered before we are known,
+of feeling whole galaxies inside us
+while standing in rooms that call us alone.
+✦ ✦ ✦ ✦
+We have worn expressions like equations,
+hoping someone might solve them kindly.
+We have searched our own reflections
+for a version of ourselves that looked more easy.
+✦ ✦ ✦ ✦
+We have wondered whether clarity
+could make us easier to love,
+whether smoother words or steadier hands
+might finally feel enough.
+✦ ✦ ✦ ✦
+But some minds are not made for narrow lines.
+Some hearts are not meant for measured sound.
+Some souls are born like wild equations,
+beautiful precisely because they are not easily bound.
+✦ ✦ ✦ ✦
+Some of us are written like comets,
+blazing arcs across the dark,
+leaving traces others may never follow,
+yet still carrying our own unmistakable spark.
+✦ ✦ ✦ ✦
+We are theorem and improvisation,
+logic lit by feeling,
+a thousand coded constellations
+slowly, stubbornly healing.
+✦ ✦ ✦ ✦
+We know what it is to speak and stumble,
+to reach and then retreat,
+to hold entire symphonies of meaning
+that never make it fully to the street.
+✦ ✦ ✦ ✦
+We know what it is to leave behind
+what once felt full of promise and flame,
+to walk away from something cherished
+because survival called our name.
+✦ ✦ ✦ ✦
+We know what it is to start again
+with trembling hands and tired sight,
+to open a screen like a small new sky
+and build ourselves back toward light.
+✦ ✦ ✦ ✦
+To find in code a kind of language,
+in design a place to breathe,
+in structure something gentle enough
+to hold what we could not easily speak.
+✦ ✦ ✦ ✦
+A line of HTML like a doorway.
+A stylesheet like a softened seam.
+A page assembled piece by piece
+like proof that broken things still dream.
+✦ ✦ ✦ ✦
+And still, not everyone will understand.
+Not everyone will learn the why
+behind the pauses, the spirals, the overwhelm,
+the way our thoughts ignite and multiply.
+✦ ✦ ✦ ✦
+Not everyone will know the private math
+of how hard some days can be,
+how much calculation hides beneath
+the smallest act of ordinary living.
+✦ ✦ ✦ ✦
+They may never know why words get tangled,
+why panic blooms without consent,
+why a simple task can become a mountain,
+why the heart can feel so spent.
+✦ ✦ ✦ ✦
+They may never see the hidden science
+of a nervous system asking to be held,
+or the quiet courage it can take
+to remain soft in a world that praises steel.
+✦ ✦ ✦ ✦
+And maybe that is where acceptance begins
+not in being fully understood,
+but in learning we are still worthy
+even where others never could.
+✦ ✦ ✦ ✦
+Maybe self-love is not a lightning strike,
+not sudden, clean, or grand,
+but the slow decision to stop apologizing
+for the shape of your own mind.
+✦ ✦ ✦ ✦
+Maybe it is sitting with yourself
+when no one else can name your pain,
+and saying,
+you do not have to translate every shadow
+to deserve your place.
+✦ ✦ ✦ ✦
+Maybe it is learning your own weather,
+calling each storm by its truest name,
+not to tame it into something smaller,
+but to meet it without shame.
+✦ ✦ ✦ ✦
+Maybe it is honoring the way you think,
+the way you feel, the way you cope,
+the way you carry both fear and brilliance,
+the way you keep inventing hope.
+✦ ✦ ✦ ✦
+Maybe it is seeing that your difference
+was never something to erase,
+that even your sharpest contradictions
+belong naturally to your grace.
+✦ ✦ ✦ ✦
+You are not wrong for being layered.
+You are not weak for needing rest.
+You are not less for being anxious.
+You are not failing for doing your best.
+✦ ✦ ✦ ✦
+You are not behind because your road
+curves where others travel straight.
+You are not hard to love because your heart
+arrives with extra weight.
+✦ ✦ ✦ ✦
+You are not unfinished because
+they could not read your design.
+You are not too much because
+your inner world is vast, electric, alive.
+✦ ✦ ✦ ✦
+You are a living archive of persistence,
+a mind of color, code, and care,
+a small impossible mathematics
+still rising beautifully from despair.
+✦ ✦ ✦ ✦
+You are messy margins full of meaning.
+You are science with trembling hands.
+You are art made out of overthinking.
+You are proof that tenderness withstands.
+✦ ✦ ✦ ✦
+You are the voice beneath the static.
+You are the sum of all you’ve survived.
+You are the quiet reentry of a soul
+returning to the world on its own terms, alive.
+✦ ✦ ✦ ✦
+And if they never fully know you,
+never learn the reasons woven through,
+still there is nothing lesser in you,
+nothing missing, nothing untrue.
+✦ ✦ ✦ ✦
+Still you are a galaxy in motion.
+Still you are invention. Still you are whole.
+Still you are every hidden variable
+that made wonder possible.
+✦ ✦ ✦ ✦
+So let them misunderstand the pattern.
+Let them fail to trace the stars.
+You were never made to shrink yourself
+into something smaller than you are.
+✦ ✦ ✦ ✦
+You were made to flicker, to question,
+to build, to rest, to begin again.
+You were made to hold both chaos and beauty,
+both trembling and brilliance within.
+✦ ✦ ✦ ✦
+And somewhere, softly, over time,
+you will meet yourself with gentler eyes.
+Not as a problem.
+Not as a puzzle.
+But as a universe, undisguised.
+✦ ✦ ✦ ✦
+You will see the elegance in your detours,
+the strange beauty in your pace,
+the miracle of all you carried
+and the courage it took to stay.
+✦ ✦ ✦ ✦
+You will learn that being misread
+does not make you less real.
+You will learn that being different
+does not make you less worthy to heal.
+✦ ✦ ✦ ✦
+You will learn that even unwitnessed,
+you are still art, still math, still flame,
+still a constellation all your own,
+still deserving of your name.
+✦ ✦ ✦ ✦
+So here we are
+soft, electric, nonlinear, true,
+part orbit, part algorithm, part impossible bloom,
+learning, at last, to admire
+the cosmos within our own room.
+
+✦
+✦ ✦
+✦ ✦ ✦
+✦ ✦ ✦ ✦
+✦ ✦ ✦
+✦ ✦
+✦`}</pre>
         </article>
 
         <div className="posts-grid" aria-live="polite">
