@@ -13,7 +13,10 @@ const inspirations = [
   {
     name: 'Temple Grandin',
     area: 'Science & Engineering',
-    profile: 'Openly discussed anxiety and neurodivergence',
+    accomplishment:
+      'Redesigned humane livestock systems used across the cattle industry and became a leading autism advocate in science.',
+    connection:
+      'Temple Grandin has openly discussed lifelong anxiety and how neurodivergent thinking shaped her work.',
     quote: 'The world needs all kinds of minds.',
     image:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Temple_Grandin_2011_Shankbone.JPG/512px-Temple_Grandin_2011_Shankbone.JPG',
@@ -21,7 +24,10 @@ const inspirations = [
   {
     name: 'Richard Branson',
     area: 'Technology & Entrepreneurship',
-    profile: 'Publicly speaks about living with ADHD',
+    accomplishment:
+      'Built the Virgin group, scaling businesses across airlines, telecom, and space technology ventures.',
+    connection:
+      'Richard Branson has publicly spoken about living with ADHD and using high-energy thinking to innovate.',
     quote: "Business opportunities are like buses, there's always another one coming.",
     image:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Richard_Branson_cropped.jpg/512px-Richard_Branson_cropped.jpg',
@@ -29,10 +35,47 @@ const inspirations = [
   {
     name: 'Nikola Tesla',
     area: 'Physics & Invention',
-    profile: 'Biographies often describe intense anxiety and obsessive traits',
+    accomplishment:
+      'Pioneered alternating current power systems and key inventions that shaped modern electrical engineering.',
+    connection:
+      'Biographical accounts describe intense anxiety, sensory sensitivity, and obsessive routines in his daily life.',
     quote: 'The present is theirs; the future, for which I really worked, is mine.',
     image:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/N.Tesla.JPG/512px-N.Tesla.JPG',
+  },
+  {
+    name: 'Leonardo da Vinci',
+    area: 'Math, Engineering & Invention',
+    accomplishment:
+      'Produced foundational work in anatomy, engineering sketches, and mathematical perspective centuries ahead of his time.',
+    connection:
+      'Some modern researchers argue his lifelong distractibility and unfinished projects align with ADHD-like patterns.',
+    quote: 'Learning never exhausts the mind.',
+    image:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Leonardo_da_Vinci_-_presumed_self-portrait_-_WGA12798.jpg/512px-Leonardo_da_Vinci_-_presumed_self-portrait_-_WGA12798.jpg',
+  },
+  {
+    name: 'Charles Darwin',
+    area: 'Biology',
+    accomplishment:
+      'Developed the theory of evolution by natural selection, reshaping modern biology forever.',
+    connection:
+      'Historians and physicians have documented severe anxiety symptoms and panic-like episodes throughout his life.',
+    quote:
+      'A man who dares to waste one hour of time has not discovered the value of life.',
+    image:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Charles_Darwin_by_Julia_Margaret_Cameron_2.jpg/512px-Charles_Darwin_by_Julia_Margaret_Cameron_2.jpg',
+  },
+  {
+    name: 'Dr. Edward Hallowell',
+    area: 'Psychiatry & ADHD Research',
+    accomplishment:
+      'Helped popularize modern ADHD understanding through clinical work and bestselling mental health books.',
+    connection:
+      'As a psychiatrist, he has publicly shared his own ADHD diagnosis and how it affects focus, creativity, and anxiety.',
+    quote: 'Never worry alone.',
+    image:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Edward_Hallowell_2015.jpg/512px-Edward_Hallowell_2015.jpg',
   },
 ]
 
@@ -206,6 +249,10 @@ function App() {
           These people are often discussed in relation to ADHD and/or anxiety. Their stories are a
           reminder that different wiring can still create world-shifting impact.
         </p>
+        <p className="muted">
+          Note: connections below are based on self-disclosure or historical biographical evidence,
+          not retroactive diagnosis.
+        </p>
 
         <div className="inspo-grid">
           {inspirations.map((person) => (
@@ -214,7 +261,10 @@ function App() {
               <div>
                 <h3>{person.name}</h3>
                 <p className="tagline">{person.area}</p>
-                <p className="muted">{person.profile}</p>
+                <p className="inspo-label">Accomplishment</p>
+                <p className="muted">{person.accomplishment}</p>
+                <p className="inspo-label">ADHD/Anxiety Connection</p>
+                <p className="muted">{person.connection}</p>
                 <blockquote>"{person.quote}"</blockquote>
               </div>
             </article>
