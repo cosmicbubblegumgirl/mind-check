@@ -59,8 +59,7 @@ const inspirations = [
     connection:
       'Some modern researchers suggest his distractibility and unfinished projects align with ADHD-like cognitive patterns.',
     quote: 'Learning never exhausts the mind.',
-    image:
-      'https://upload.wikimedia.org/wikipedia/commons/e/ec/Leonardo_da_Vinci_-_presumed_self-portrait_-_WGA12798.jpg',
+    image: 'inspiration/leonardo.png',
   },
   {
     name: 'Albert Einstein',
