@@ -49,7 +49,7 @@ const inspirations = [
     connection:
       'Historical sources note profound stress, exhaustion, and anxiety during years of high-stakes research and public scrutiny.',
     quote: 'Nothing in life is to be feared, it is only to be understood.',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/6/69/Marie_Curie_c1920.jpg',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/d/d7/Marie_Curie_in_her_laboratory.jpg',
   },
   {
     name: 'Leonardo da Vinci',
