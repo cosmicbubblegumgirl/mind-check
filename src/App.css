@@ -7,6 +7,57 @@
   isolation: isolate;
 }
 
+.top-nav,
+.hero-panel,
+.inspiration {
+  grid-column: 1 / -1;
+}
+
+.top-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: 0 8px 20px rgba(84, 58, 133, 0.12);
+}
+
+.top-nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 700;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+}
+
+.top-nav a:hover {
+  background: rgba(127, 83, 224, 0.13);
+}
+
+.hero-panel {
+  padding: 1.8rem;
+}
+
+.hero-actions {
+  margin-top: 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.launch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.launch.alt {
+  background: linear-gradient(130deg, #ff6b9f, #ffa7c8);
+}
+
 .page::before,
 .page::after {
   content: '';
@@ -142,17 +193,6 @@ h1 {
   background: var(--line);
 }
 
-select,
-textarea,
-input[type='range'] {
-  margin-top: 0.25rem;
-  appearance: none;
-  height: 0.5rem;
-  border: 0;
-  padding: 0;
-  background: transparent;
-}
-
 input[type='range']::-webkit-slider-runnable-track {
   height: 0.5rem;
   border-radius: 999px;
@@ -192,9 +232,19 @@ input[type='range']:focus-visible {
 
 select,
 textarea {
+  margin-top: 0.25rem;
   border: 1px solid var(--line);
   border-radius: 14px;
   font: inherit;
+}
+
+input[type='range'] {
+  margin-top: 0.25rem;
+  appearance: none;
+  height: 0.5rem;
+  border: 0;
+  padding: 0;
+  background: transparent;
 }
 
 select,
@@ -282,6 +332,44 @@ textarea:focus {
   padding-left: 1rem;
 }
 
+.inspiration .inspo-grid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.inspo-card {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 0.7rem;
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.inspo-card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.inspo-card h3 {
+  margin: 0.65rem 0 0.2rem;
+}
+
+.tagline {
+  margin: 0;
+  font-weight: 700;
+  color: var(--accent-strong);
+}
+
+blockquote {
+  margin: 0.65rem 0 0;
+  padding-left: 0.65rem;
+  border-left: 3px solid var(--accent);
+  font-style: italic;
+}
+
 small {
   color: var(--muted);
 }
@@ -314,6 +402,10 @@ small {
     grid-template-columns: 1fr;
   }
 
+  .top-nav {
+    border-radius: 16px;
+  }
+
   .page::before,
   .page::after {
     width: 110px;
@@ -325,6 +417,10 @@ small {
   }
 
   .field-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .inspiration .inspo-grid {
     grid-template-columns: 1fr;
   }
 }
