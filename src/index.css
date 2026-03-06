@@ -1,12 +1,14 @@
 :root {
-  --paper: #fff7e8;
-  --card: #fffefb;
-  --line: #d6decd;
-  --text: #20322b;
-  --muted: #4a6358;
-  --accent: #2c8f78;
-  --accent-strong: #236654;
-  font-family: 'Trebuchet MS', 'Gill Sans', 'Segoe UI', sans-serif;
+  --paper: #f8f3ff;
+  --card: #ffffff;
+  --line: #dccff7;
+  --text: #2b2142;
+  --muted: #655584;
+  --accent: #ff6b9f;
+  --accent-strong: #7f53e0;
+  --mint: #b8f2e6;
+  --sky: #bcd7ff;
+  font-family: 'Segoe Print', 'Comic Sans MS', 'Trebuchet MS', 'Segoe UI', sans-serif;
   line-height: 1.45;
   font-weight: 400;
   color: var(--text);
@@ -25,14 +27,15 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background:
-    radial-gradient(circle at 10% 0%, #ffe8c1 0%, transparent 45%),
-    radial-gradient(circle at 90% 100%, #cce9dd 0%, transparent 35%),
+    radial-gradient(circle at 10% 0%, #ffd3ea 0%, transparent 42%),
+    radial-gradient(circle at 88% 12%, #d0f5ff 0%, transparent 35%),
+    radial-gradient(circle at 92% 96%, #d7ffe8 0%, transparent 35%),
     var(--paper);
 }
 
 #root {
   width: min(1050px, 100% - 2rem);
-  margin: 1.5rem auto;
+  margin: 1.25rem auto 1.8rem;
 }
 
 button,
