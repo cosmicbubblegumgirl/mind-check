@@ -17,6 +17,7 @@ function App() {
   const [savedAt, setSavedAt] = useState('')
 
   const noteRemaining = 180 - note.length
+  const energyPercent = energy * 10
 
   const status = useMemo(() => {
     if (energy >= 8) return 'Green'
@@ -40,36 +41,51 @@ function App() {
   return (
     <main className="page">
       <section className="panel">
-        <p className="eyebrow">Daily check-in</p>
+        <p className="eyebrow">Tiny mood weather report</p>
         <h1>Mind Check</h1>
-        <p className="lead">Reset your headspace in under 60 seconds.</p>
+        <p className="lead">A quick sparkle scan before the day starts cartwheeling.</p>
 
         <div className="field-grid">
           <label className="field" htmlFor="mood">
-            <span>Mood</span>
+            <span>How's your vibe?</span>
             <select id="mood" value={mood} onChange={(event) => setMood(event.target.value)}>
               <option>Steady</option>
-              <option>Excited</option>
-              <option>Anxious</option>
-              <option>Overloaded</option>
+              <option>Sunny</option>
+              <option>Stormy</option>
+              <option>Fizzing</option>
             </select>
           </label>
 
           <label className="field" htmlFor="energy">
-            <span>Energy: {energy}/10</span>
+            <span>Spark Battery: {energy}/10</span>
+            <div className="battery-wrap" aria-hidden="true">
+              <div className="battery-shell">
+                <div className="battery-fill" style={{ width: `${energyPercent}%` }} />
+                <div className="battery-segments">
+                  {Array.from({ length: 10 }).map((_, index) => (
+                    <span
+                      key={index}
+                      className={index < energy ? 'battery-cell battery-cell-on' : 'battery-cell'}
+                    />
+                  ))}
+                </div>
+              </div>
+              <span className="battery-tip" />
+            </div>
             <input
               id="energy"
               type="range"
               min={1}
               max={10}
               value={energy}
+              aria-label="Energy level"
               onChange={(event) => setEnergy(Number(event.target.value))}
             />
           </label>
         </div>
 
         <fieldset className="prompt-group">
-          <legend>What needs attention?</legend>
+          <legend>Which gremlins are loud today?</legend>
           <div className="chips">
             {prompts.map((prompt) => {
               const active = checked.includes(prompt)
@@ -88,35 +104,35 @@ function App() {
         </fieldset>
 
         <label className="field" htmlFor="note">
-          <span>Notes</span>
+          <span>Brain confetti notes</span>
           <textarea
             id="note"
             maxLength={180}
             rows={4}
             value={note}
-            placeholder="One thing that would help today is..."
+            placeholder="Tell future-you one tiny win to chase today..."
             onChange={(event) => setNote(event.target.value)}
           />
-          <small>{noteRemaining} chars left</small>
+          <small>{noteRemaining} sparkles left</small>
         </label>
 
         <button type="button" className="save" onClick={saveCheckIn}>
-          Save Check-In
+          Pocket This Check-In
         </button>
-        {savedAt ? <p className="saved">Saved at {savedAt}</p> : null}
+        {savedAt ? <p className="saved">Stashed at {savedAt}</p> : null}
       </section>
 
       <aside className="summary">
-        <p className="summary-title">Current Snapshot</p>
+        <p className="summary-title">Today's Sprinkle</p>
         <div className="meter">
-          <span>Status</span>
+          <span>Battery mood</span>
           <strong>{status}</strong>
         </div>
         <p>
-          Mood: <strong>{mood}</strong>
+          Vibe: <strong>{mood}</strong>
         </p>
         <p>
-          Focus points: <strong>{checked.length}</strong>
+          Gremlins spotted: <strong>{checked.length}</strong>
         </p>
         <ul>
           {checked.map((item) => (
